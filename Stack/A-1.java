@@ -1,11 +1,46 @@
+
+
+
+class Tester {
+
+    public static void main(String args[]) {
+
+        Stack stack = new Stack(10);
+        stack.push(15);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+
+        calculateSum(stack);
+
+        System.out.println("Updated stack");
+        stack.display();
+    }
+
+    public static void calculateSum(Stack stack) {
+        Stack s2=new Stack(10);
+        int tmp,sum=0;
+        while(!stack.isEmpty()){
+            tmp=stack.pop();
+            sum+=tmp;
+            s2.push(tmp);
+        }
+        stack.push(sum);
+        while(!s2.isEmpty()){
+            stack.push(s2.pop());
+        }
+    }
+}
+
+
 class Stack {
-    
-    private int top; 
-    private int maxSize; 
+
+    private int top;
+    private int maxSize;
     private int[] arr;
 
     Stack(int maxSize) {
-        this.top = -1; 
+        this.top = -1;
         this.maxSize = maxSize;
         arr = new int[maxSize];
     }
@@ -59,36 +94,3 @@ class Stack {
             return arr[top--];
     }
 }
-
-
-class Tester {
-      
-    public static void main(String args[]) {
-            
-        Stack stack = new Stack(10);
-        stack.push(15);
-        stack.push(20);
-        stack.push(30);
-        stack.push(40);
-        
-        calculateSum(stack);
-            
-        System.out.println("Updated stack");
-        stack.display();
-    }
-
-    public static void calculateSum(Stack stack) {
-        Stack tmp=new Stack(100);
-        int sum=0,num;
-        while ((num=stack.pop())!=Integer.MIN_VALUE){
-            sum+=num;
-            tmp.push(num);}
-        stack.push(sum);
-        while ((num=tmp.pop())!=Integer.MIN_VALUE)
-            stack.push(num);
-    }
-}
-
-
-
-

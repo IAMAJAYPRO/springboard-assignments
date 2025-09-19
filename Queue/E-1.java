@@ -1,5 +1,44 @@
+
+class Tester {
+
+    public static void main(String[] args) {
+
+        Queue queue = new Queue(7);
+        queue.enqueue(2);
+        queue.enqueue(7);
+        queue.enqueue(9);
+        queue.enqueue(4);
+        queue.enqueue(6);
+        queue.enqueue(5);
+        queue.enqueue(10);
+
+        Queue[] queueArray = splitQueue(queue);
+
+        System.out.println("Elements in the queue of odd numbers");
+        queueArray[0].display();
+
+        System.out.println("\nElements in the queue of even numbers");
+        queueArray[1].display();
+
+    }
+
+    public static Queue[] splitQueue(Queue queue) {
+        Queue odds = new Queue(queue.getMaxSize());
+        Queue evens = new Queue(queue.getMaxSize());
+        int num;
+        while((num=queue.dequeue())!=Integer.MIN_VALUE ){
+            if (num%2==0)
+                evens.enqueue(num);
+            else
+                odds.enqueue(num);
+        }
+        Queue[] arr={odds,evens};
+        return arr;
+    }
+}
+
 class Queue {
-      
+
     private int front;
     private int rear;
     private int maxSize;
@@ -18,7 +57,7 @@ class Queue {
         }
         return false;
     }
-            
+
     public boolean enqueue(int data) {
         if (isFull()) {
             return false;
@@ -37,13 +76,13 @@ class Queue {
             }
         }
     }
-            
+
     public boolean isEmpty() {
         if (front > rear)
             return true;
         return false;
     }
-            
+
     public int dequeue() {
         if (isEmpty()) {
             return Integer.MIN_VALUE;
@@ -56,44 +95,5 @@ class Queue {
 
     public int getMaxSize() {
         return maxSize;
-    }
-}
-
-
-class Tester {
-
-    public static void main(String[] args) {
-            
-        Queue queue = new Queue(7);
-        queue.enqueue(2);
-        queue.enqueue(7);
-        queue.enqueue(9);
-        queue.enqueue(4);
-        queue.enqueue(6);
-        queue.enqueue(5);
-        queue.enqueue(10);
-
-        Queue[] queueArray = splitQueue(queue);
-            
-        System.out.println("Elements in the queue of odd numbers");
-        queueArray[0].display();
-            
-        System.out.println("\nElements in the queue of even numbers");
-        queueArray[1].display();
-
-    }
-      
-    public static Queue[] splitQueue(Queue queue) {
-        Queue odds=new Queue(100);
-        Queue evens=new Queue(100);
-        int num;
-        while((num=queue.dequeue())!=Integer.MIN_VALUE ){
-            if (num%2==0)
-                evens.enqueue(num);
-            else
-                odds.enqueue(num);
-        }
-        Queue[] arr={odds,evens};
-        return arr;
     }
 }

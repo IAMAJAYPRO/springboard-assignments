@@ -1,24 +1,56 @@
+
+class Tester {
+
+    public static void main(String[] args) {
+
+        Queue queue = new Queue(7);
+        queue.enqueue(13983);
+        queue.enqueue(10080);
+        queue.enqueue(7113);
+        queue.enqueue(2520);
+        queue.enqueue(2500);
+
+        Queue outputQueue = findEvenlyDivisibleNumbers(queue);
+
+        System.out.println("Evenly divisible numbers");
+        outputQueue.display();
+
+    }
+
+    public static Queue findEvenlyDivisibleNumbers(Queue queue) {
+        Queue divs=new Queue(queue.getMaxSize());
+        int num;
+        while(!queue.isEmpty()){
+            num=queue.dequeue();
+            if (num%2520==0)
+                divs.enqueue(num);
+        }
+        return divs;
+    }
+}
+
+
 class Queue {
-      
+
     private int front;
     private int rear;
     private int maxSize;
     private int arr[];
-      
+
     Queue(int maxSize) {
         this.front = 0;
         this.rear = -1;
         this.maxSize = maxSize;
         this.arr = new int[this.maxSize];
     }
-      
+
     public boolean isFull() {
         if (rear == maxSize - 1) {
             return true;
         }
         return false;
     }
-            
+
     public boolean enqueue(int data) {
         if (isFull()) {
             return false;
@@ -37,13 +69,13 @@ class Queue {
             }
         }
     }
-            
+
     public boolean isEmpty() {
         if (front > rear)
             return true;
         return false;
     }
-            
+
     public int dequeue() {
         if (isEmpty()) {
             return Integer.MIN_VALUE;
@@ -59,32 +91,3 @@ class Queue {
     }
 }
 
-
-class Tester {
-
-    public static void main(String[] args) {
-            
-        Queue queue = new Queue(7);
-        queue.enqueue(13983);
-        queue.enqueue(10080);
-        queue.enqueue(7113);
-        queue.enqueue(2520);
-        queue.enqueue(2500);
-
-        Queue outputQueue = findEvenlyDivisibleNumbers(queue);
-            
-        System.out.println("Evenly divisible numbers");
-        outputQueue.display();
-
-    }
-      
-    public static Queue findEvenlyDivisibleNumbers(Queue queue) {
-        Queue div=new Queue(100);
-        int num;
-        while ((num=queue.dequeue())!=Integer.MIN_VALUE){
-            if (num%2520==0)
-                    div.enqueue(num);
-        }
-        return div;
-    }
-}
