@@ -6,15 +6,15 @@ class Tester {
 
     public static List<Integer> mergeLists(List<Integer> listOne, List<Integer> listTwo) {
         List<Integer> LL = new LinkedList<Integer>();
-
+        // linked lists not working in sites soln verifier so list.get
         while (!listOne.isEmpty()) {
             if (listTwo.isEmpty()){
                 break;
             }
-            if (listOne.getFirst()<listTwo.getFirst()){
-                LL.add(listOne.removeFirst());
+            if (listOne.get(0)<listTwo.get(0)){
+                LL.add(listOne.remove(0));
             }else{
-                LL.add(listTwo.removeFirst());
+                LL.add(listTwo.remove(0));
             }
         }
         LL.addAll(listOne);
